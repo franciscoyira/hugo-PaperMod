@@ -1,6 +1,73 @@
 {{- define "main" }}
 
-{{- if (and site.Params.profileMode.enabled .IsHome) }}
+{{- if .IsHome }}
+<section class="fy-home">
+  <nav class="fy-nav">
+    <div class="fy-brand"><h1>FRANCISCO_YIRA</h1></div>
+    <div class="fy-nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">CV/Portfolio</a>
+      <a href="#blog">Blog</a>
+      <a href="{{ "/fr/" | relLangURL }}">FR</a>
+    </div>
+  </nav>
+
+  <div class="fy-system-context" id="about">
+    <div class="fy-context-zone fy-spec-zone">
+      <span class="fy-label fy-zone-label">BIO</span>
+      Data professional with a background in economics and seven years of experience working on statistical modeling, analytics, and applied AI in business contexts. Recently completed a post-graduate program in Applied AI (Dean’s List). My work is primarily in Python and SQL.
+      Certifications include Tableau Data Analyst, AWS Cloud Practitioner, and Azure AI Fundamentals.
+    </div>
+    <div class="fy-context-zone fy-now-zone">
+      <span class="fy-label fy-zone-label">NOW</span>
+      Resuming Data Science / Tech networking after passing TCF (French Test). Studying for Databricks Data Engineer Associate Certification.
+    </div>
+  </div>
+
+  <div class="fy-search-container">
+    <input type="text" id="system-search" placeholder="FILTER BY KEYWORD, TAG, OR DATE..." autocomplete="off">
+  </div>
+
+  <section class="fy-content" id="blog">
+    <h2>BLOG</h2>
+    {{- $posts := first 3 (where site.RegularPages "Type" "in" site.Params.mainSections) }}
+    {{- range $posts }}
+    <div class="fy-entry">
+      <div class="fy-entry-meta">{{ .Date.Format "2006-01-02" }}{{ with index .Params.tags 0 }} | {{ upper . }}{{ end }}</div>
+      <a href="{{ .RelPermalink }}" class="fy-entry-title">{{ .Title }}</a>
+      <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+    </div>
+    {{- end }}
+
+    <h2 id="projects">PROJECTS</h2>
+    <div class="fy-entry">
+      <div class="fy-entry-meta">DATA ENGINEERING</div>
+      <a href="#" class="fy-entry-title">Building an Airflow Pipeline That Talks to AWS</a>
+      <p>End-to-end data pipeline with Apache Airflow that interacts with AWS services such as RDS and S3 and makes the processed data available on PostgreSQL.</p>
+    </div>
+
+    <div class="fy-entry">
+      <div class="fy-entry-meta">CAUSAL INFERENCE</div>
+      <a href="#" class="fy-entry-title">Causal Inference in R (for people who prefer code over maths)</a>
+      <p>Translation of causal inference concepts into code-first explanations. Visualizations and implementation logic for R practitioners.</p>
+    </div>
+  </section>
+
+  <div class="fy-subscription-container">
+    <span class="fy-label fy-zone-label">NEWSLETTER</span>
+    <p class="fy-newsletter-text">Receive new posts directly on your inbox.</p>
+    <form class="fy-subscription-form">
+      <input type="email" id="sub-email" placeholder="EMAIL_ADDRESS" required>
+      <button type="submit" class="fy-sub-button">Subscribe</button>
+    </form>
+  </div>
+
+  <footer class="fy-footer">
+    <div>LAST_UPDATED: {{ now.UTC.Format "2006-01-02T15:04:05Z" }}</div>
+    <div>TORONTO_CA</div>
+  </footer>
+</section>
+{{- else if (and site.Params.profileMode.enabled .IsHome) }}
 {{- partial "index_profile.html" . }}
 {{- else }} {{/* if not profileMode */}}
 
