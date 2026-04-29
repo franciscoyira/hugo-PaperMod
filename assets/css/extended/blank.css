@@ -1,5 +1,67 @@
-/*
-This is just a placeholder blank stylesheet so as to support adding custom styles budled with theme's default styles
+:root {
+  --fy-bg: #ffffff;
+  --fy-text: #000000;
+  --fy-accent: #a80000;
+  --fy-border: #ededed;
+  --fy-code-bg: #f6f6f6;
+}
 
-Read https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#bundling-custom-css-with-themes-assets for more info
-*/
+body.list:has(.fy-home) {
+  background-color: var(--fy-bg);
+  color: var(--fy-text);
+}
+
+body.list:has(.fy-home) .header,
+body.list:has(.fy-home) #footer {
+  display: none;
+}
+
+body.list:has(.fy-home) .main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: "Charter", "Georgia", serif;
+  line-height: 1.6;
+}
+
+.fy-home * { box-sizing: border-box; border-radius: 0 !important; }
+.fy-home h1,
+.fy-home h2,
+.fy-home h3 {
+  font-family: 'Inter', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  border-bottom: 1px solid var(--fy-border);
+  margin-bottom: 15px;
+  padding-bottom: 5px;
+}
+.fy-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 60px; }
+.fy-brand { font-size: 1.2rem; }
+.fy-nav-links a { text-decoration: none; color: var(--fy-text); margin-left: 20px; font-family: 'Inter', sans-serif; font-size: 0.9rem; text-transform: uppercase; }
+.fy-nav-links a:hover { color: var(--fy-accent); text-decoration: underline; }
+.fy-system-context { display: grid; grid-template-columns: 1fr; border: 1.5px solid var(--fy-text); margin-bottom: 40px; font-size: 0.85rem; }
+.fy-context-zone { padding: 15px; }
+.fy-zone-label { display: block; font-size: 0.85rem; color: var(--fy-accent); font-family: 'Inter', sans-serif; margin-bottom: 8px; font-weight: 700; }
+.fy-spec-zone { border-bottom: 1.5px solid var(--fy-text); background: #fdfdfd; }
+.fy-search-container { margin-bottom: 40px; position: relative; }
+#system-search { width: 100%; padding: 10px; font-family: 'JetBrains Mono', monospace; font-size: 1rem; border: 1.5px solid var(--fy-text); background: var(--fy-bg); outline: none; }
+#system-search:focus { border-color: var(--fy-accent); box-shadow: 5px 5px 0 var(--fy-border); }
+.fy-entry { margin-bottom: 40px; }
+.fy-entry-meta { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #666; margin-bottom: 5px; }
+.fy-entry-title { font-size: 1.5rem; text-decoration: none; color: var(--fy-text); display: block; border: none !important; }
+.fy-entry-title:hover { color: var(--fy-accent); }
+.fy-home code { font-family: "SF Mono", "JetBrains Mono", monospace; background: var(--fy-code-bg); padding: 2px 5px; font-size: 0.9rem; }
+.fy-subscription-container { border: 1.5px solid var(--fy-text); padding: 20px; margin-top: 60px; background: #fafafa; }
+.fy-newsletter-text { font-size: 0.85rem; font-family: 'Inter', sans-serif; }
+.fy-subscription-form { display: flex; gap: 10px; margin-top: 10px; }
+#sub-email { flex-grow: 1; padding: 10px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; border: 1.5px solid var(--fy-text); outline: none; }
+.fy-sub-button { background: var(--fy-text); color: var(--fy-bg); border: none; padding: 10px 20px; font-family: 'Inter', sans-serif; font-weight: 700; text-transform: uppercase; cursor: pointer; font-size: 0.8rem; }
+.fy-sub-button:hover { background: var(--fy-accent); }
+.fy-footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid var(--fy-border); font-family: 'Inter', sans-serif; font-size: 0.75rem; color: #888; display: flex; justify-content: space-between; }
+
+@media (max-width: 600px) {
+  .fy-nav { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .fy-nav-links a { margin-left: 0; margin-right: 16px; }
+  .fy-subscription-form { flex-direction: column; }
+}
